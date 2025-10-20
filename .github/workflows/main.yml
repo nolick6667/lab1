@@ -1,0 +1,24 @@
+name: Run Lab1 Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up environment
+        run: sudo apt update && sudo apt install -y wget tar coreutils
+
+      - name: Run Bash tests
+        run: |
+          chmod +x lab1.sh test.sh
+          ./test.sh
